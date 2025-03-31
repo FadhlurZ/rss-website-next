@@ -1,40 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# RSS Website - Next
 
-## Getting Started
+Developed by Muhammad Fadhlurrohman
 
-First, run the development server:
+This is the repository for the RSS Website. It is a simple application that retrieves news articles from the [NOS RSS Feeds](https://nos.nl/feeds). The application consists of two pages. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+-   The main overview that shows the latest articles from the selected RSS feed
+-   A detail page of an article
+
+Next to that there is also an api route found under /pages/api/rss/. The API route acts as a proxy for the app to avoid CORS errors. The API route is used when fetching data. An example url for the api is:
+
+```
+http://localhost:3000/api/rss/:feed
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+:feed is replaced by the frontend to retrieve the latest news based on the selected feed. The following feeds are used by the app:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- `nosnieuwsalgemeen` (General news)
+- `nosnieuwsbinnenland` (Domestic news)
+- `nosnieuwsbuitenland` (World news)
+- `nossportalgemeen` (Sports news)
+- `nosvoetbal` (Football news)
+- `nosnieuwstech` (Tech news)
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+The frontend then uses this api url to retrieve the data using the hook found in `useRSSFeed.ts`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+## First time setup
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+-   Make sure you use the current Node version (found in .nvmrc) by running the following command. If have [nvm](https://github.com/nvm-sh/nvm) installed, you can use the following command to switch to the correct node version: `nvm use`
+-   Install packages using `npm install`
+-   After successful install run the development environment using `npm run dev`
+-   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+A quick overview of the project is seen below
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+```text
+euromoslim-os-next
+├─ node_modules/
+├─ src/
+│  ├─ components            (Reusable components used within the app)
+│  ├─ helpers               (Methods used troughout the system)
+│  ├─ hooks                 (Hooks used within the app)
+│  ├─ pages                 (Pages of the app)
+│  ├─ store                 (Zustand store)
+│  ├─ styles                (Global styling)
+│  ├─ typings               (Typescript interfaces and constants)
+├─ package.json
+├─ README.md
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Commands
 
-## Deploy on Vercel
+The following commands are found in `package.json` are used as follows.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`npm run dev` - Starts the development server
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+`npm run build` - Create a Next build
+
+## Next.js
+
+This application uses the `pages` router of Next.js. To learn more about Next.js, take a look at the following resources:
+
+-   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+-   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+## App techniques overview
+
+The system uses [Tanstack Query](https://tanstack.com/query/latest) and [Zustand](https://github.com/pmndrs/zustand) for state management. [Tailwind](https://tailwindcss.com/)is used for styling.
