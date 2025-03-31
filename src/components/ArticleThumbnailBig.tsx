@@ -14,7 +14,6 @@ const ArticleThumbnailBig = ({
   isLoading,
   onClick,
 }: Props) => {
-  console.log(imageUrl);
 
   return (
     <button

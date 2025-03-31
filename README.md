@@ -67,4 +67,4 @@ This application uses the `pages` router of Next.js. To learn more about Next.js
 
 ## App techniques overview
 
-The system uses [Tanstack Query](https://tanstack.com/query/latest) and [Zustand](https://github.com/pmndrs/zustand) for state management. [Tailwind](https://tailwindcss.com/)is used for styling.
+The system uses [Tanstack Query](https://tanstack.com/query/latest) and [Zustand](https://github.com/pmndrs/zustand) for state management. [Tailwind] (https://tailwindcss.com/)is used for styling.
